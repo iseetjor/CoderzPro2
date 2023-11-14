@@ -1,0 +1,46 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+<form method="post" asp-action="Create">
+
+    <table class="table table-bordered">
+        <tr>
+            <td><label asp-for="Name"></label> </td>
+            <td><input asp-for="Name" class="form-control" /> </td>
+        </tr>
+        <tr>
+            <td><label asp-for="Salary"></label> </td>
+            <td><input asp-for="Salary" class="form-control" /> </td>
+        </tr>
+        <tr>
+            <td><label asp-for="City"></label> </td>
+            <td><input asp-for="City" class="form-control" /> </td>
+        </tr>
+        <tr>
+            <td><label asp-for="HDate"></label> </td>
+            <td><input asp-for="HDate" class="form-control" /> </td>
+        </tr>
+        <tr>
+            <td><label asp-for="DepartmentId"></label> </td>
+            <td>
+            <select asp-for="DepartmentId" class="form-control"
+                    asp-items="ViewBag.GetAllDepartments" >
+                <option value="-1">--- Select Department ---</option>
+                
+            
+                </select> </td>
+        </tr>
+
+
+        <tr>
+            <td colspan="2">
+                <input type="submit" class="btn btn-success" value="Save" />
+            </td>
+        </tr>
+
+    </table>
+
+</form>

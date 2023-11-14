@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Employee>
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Index</h1>
+<a asp-action="Create" class="btn btn-success">Create new Employee</a>
+@if (ViewBag.del > 0)
+{
+    <a asp-action="DeletedEmployeesList" class="btn btn-outline-warning">Deleted Employees</a>
+}
+@if (Model.Any())
+{
+
+    <table class="table table-bordered">
+        <tr>
+            <th>@Html.DisplayNameFor(x => x.Name)</th>
+            <th>@Html.DisplayNameFor(x => x.Salary)</th>
+<th>@Html.DisplayNameFor(x => x.DepartmentId)</th>
+            <th>Operations</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Salary</td>
+                <td>@item.Department.Name</td>
+                <td>
+                    <a asp-action="Details"
+                       asp-controller="Employees"
+                       asp-route-id="@item.EmployeeId"
+                       class="btn btn-primary">
+                        More Details
+                    </a>
+                    <a asp-action="Edit"
+                       asp-controller="Employees"
+                       asp-route-id="@item.EmployeeId"
+                       class="btn btn-warning">
+                        Edit
+                    </a>
+                    <a asp-action="Delete"
+                       asp-controller="Employees"
+                       asp-route-id="@item.EmployeeId"
+                       class="btn btn-danger">
+                        Delete
+                    </a>
+
+                    <a asp-action="SoftDelete"
+                       asp-controller="Employees"
+                       asp-route-id="@item.EmployeeId"
+                       class="btn btn-danger">
+                        Soft Delete
+                    </a>
+                </td>
+            </tr>
+
+        }
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">
+        No Data in this view ....
+    </div>
+}

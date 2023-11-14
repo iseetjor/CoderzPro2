@@ -1,0 +1,41 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <td> <label asp-for="Name"></label> </td>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <td> <label asp-for="Salary"></label> </td>
+        <td>@Model.Salary</td>
+    </tr>
+    <tr>
+        <td> <label asp-for="City"></label> </td>
+        <td>@Model.City</td>
+    </tr>
+    <tr>
+        <td> <label asp-for="HDate"></label> </td>
+        <td>@Model.HDate</td>
+    </tr>
+    <tr>
+        <td> <label asp-for="IsActive"></label> </td>
+        <td>
+            @if (Model.IsActive == true)
+            {
+                <span class="text-success">Active Account</span>
+            }
+            else
+            {
+                <span class="text-danger">Not-Active Account</span>
+
+            }
+
+        </td>
+    </tr>
+
+</table>
