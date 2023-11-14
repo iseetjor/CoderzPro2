@@ -44,5 +44,26 @@ namespace CoderzPro2.Controllers
             return View(model);
         
         }
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(User user)
+        {
+            var chkUser = db.Users.Where(x => x.UserName == user.UserName
+            && x.Password==user.Password);
+
+            if (chkUser.Any())
+            {
+                HttpContext.Session.SetString("roleID", chkUser.SingleOrDefault().RoleId.ToString());
+
+                return RedirectToAction("Index","Employees");
+            }
+            ViewBag.errMsg = "Invalid user or password";
+            return View(user);
+        }
+
     }
 }

@@ -18,6 +18,10 @@ namespace CoderzPro2.Controllers
 
         public IActionResult Index()
         {
+            if (string.IsNullOrEmpty( HttpContext.Session.GetString("roleID")))
+            {
+                return RedirectToAction("Login", "Account");
+            }
             ViewBag.del = db.Employees.Where(x => x.IsDeleted == true).Count();
             return View(db.Employees.Include(x=>x.Department).
                 Where(x => x.IsDeleted == false));
